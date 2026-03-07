@@ -1,6 +1,6 @@
 GENERAL
 
-Game Job Scraper is intended to aggregate jobs from various job boards in the game industry. Instead of searching through numerous boards for updates, it allows users to view a single hub of jobs from a collection of studios. This specific repository if focused on the webscraping aspect, though I've included an example of how this data can be presented as a website (www.mattmuller.website).
+Game Job Scraper is intended to aggregate jobs from various job boards in the game industry. Instead of searching through numerous boards for updates, it allows users to view a single hub of jobs from a collection of studios. This specific repository if focused on the webscraping aspect, though I've included a barebones example of how this data can be presented as a website (www.mattmuller.website).
 
 AUTOMATION
 
