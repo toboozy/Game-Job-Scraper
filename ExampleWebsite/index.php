@@ -1,23 +1,6 @@
 <?php 
     $db = new SQLite3('database/jobs.db');
 
-    /*
-    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-        if (isset($_POST['mark-as-applied'])){
-            echo "yes";
-            $job_id = $_POST['id'];
-            #This prepares the sql statement without executing it so that we can bind values
-            $statement = $db->prepare("UPDATE jobs SET status = 'applied' WHERE id = :id");
-            #Replace _id with the value of job_id
-            $statement->bindValue(':id', $job_id, SQLITE3_INTEGER);
-            #Now we can execute the statement
-            $statement->execute();
-        }
-
-        header('Location: index.php');
-    }
-    */
-
     $result = $db->query("SELECT * FROM jobs ORDER BY SUBSTR(date,10,-4) DESC, SUBSTR(date,4,5) DESC, SUBSTR(date,1,2) DESC");
 
     $jobs = [];
