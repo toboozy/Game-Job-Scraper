@@ -27,7 +27,7 @@
     <body>
         <main>
             <div class="container py-5 text-center">
-                <h1 class="display-5 fw-bold">Code Game Crawler</h1>
+                <h1 class="display-5 fw-bold"><a href="https://www.mattmuller.dev/" target="_blank">MattMuller.Dev's Job Board</a></h1>
                 <p class="lead text-muted">
                     A collection of automatically aggregated programming jobs for game developers. 
                 </p>
@@ -63,7 +63,10 @@
 
         <footer>
             <h3 class="text-center">Currently sourced from</h3>
-            <p class="text-center"><i><a href="https://workwithindies.com" target="_blank">Work With Indies</a></i></p>
+            <ul class="text-center list-unstyled">
+                <li><i><a href="https://workwithindies.com" target="_blank">Work With Indies</a></i></li>
+                <li><i><a href="https://gameloft.com" target="_blank">Gameloft</a></i></li>
+            </ul>
         </footer>
 
     </body>
