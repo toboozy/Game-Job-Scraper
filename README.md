@@ -12,7 +12,7 @@ In this method, the webscraper reads the HTML document and uses Beautiful Soup t
 
 2. Reading JSON
 
-At times, a website will obfuscate information that makes reading HTML more difficult. For example, many websites include pagination that limits the information present in the HTML. To get around this, we can access the JSON directly and input our own paramaters. 
+At times, a website will obfuscate information that makes reading HTML more difficult. For example, many websites include pagination that limits the information present in the HTML. To get around this, we can access the fetch request directly and input our own paramaters to recieve the JSON data used to populate the website. 
 
 Whilst this specific repository if focused on the webscraping aspect, I've included a barebones example of how this data can be presented as a website (www.mattmuller.website).
 
