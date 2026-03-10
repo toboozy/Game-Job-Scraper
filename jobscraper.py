@@ -157,10 +157,11 @@ def scrape_riot():
 
     for job in riot_json['jobs']:
         if (is_valid_job(job['title'])):
+            formatted_job_URL = job['url'].replace("j","job")
             job_array.append(
                 {'title' : job['title'], 
                  'company' : 'Riot', 
-                 'link' : job['url'], 
+                 'link' : RIOT['URL'] + formatted_job_URL, 
                  'date' : None, 
                  'location' : job['office']})
             
