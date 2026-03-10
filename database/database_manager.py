@@ -22,6 +22,19 @@ def job_in_db(URL : str):
         return True
 
 
+# Need to convert to PHP and run on the server rather than here
+def search(query : str):
+    query = query.lower().strip().split()
+    results = []
+    for q in query:
+        # Add Try Except here
+        q = f'%{q}%'
+        result = sql.execute("SELECT * FROM jobs WHERE title LIKE ?",(q,)).fetchall()
+        if (result is not None):
+            results.append(result)
+    
+    return results
+
 #CHANGING
 
 def remove_job(job_id : int):

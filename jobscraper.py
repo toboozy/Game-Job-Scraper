@@ -8,10 +8,11 @@ import json
 #EXIT CODE
 exit_code = 0
 
-#FILTERS
+#WEBSITE SCRAPING CONFIGS (Consider adding to seperate file)
+
+#Filters jobs when scraping
 KEYWORDS = ['programmer', 'c#', 'developer', 'engineer']
 
-#WEBSITE SCRAPING CONFIGS
 WORK_WITH_INDIES = {'URL':"https://www.workwithindies.com/", 
                         'title_element':'div', 'title_attrs':{'class':'text-block-28'},
                         'company_element':'div', 'company_attrs':{'class':'job-card-text bold'},
@@ -23,6 +24,12 @@ GAMELOFT = {'URL' : "https://www.gameloft.com/jobs",
             'title_element' : 'a', 
             'title_attrs' : {'class': '_row_b9eb0_121'},
             'fetch-URL' : 'https://wmt-api.gameloft.com/api/gameloft/smart-recruiter-jobs?&visible=1&page=1&limit=999&lang=en'
+            }
+
+
+RIOT = {'URL' : "https://www.riotgames.com/en/work-with-us",
+        'data-element' : 'div',
+        'data-attrs' : {'class' : 'js-job-list-wrapper'}
             }
 
 
@@ -51,11 +58,14 @@ def filter_jobs(job_titles : list):
 
 # Checks the job against the KEYWORD filter
 def is_valid_job(job_title : str):
-    for keyword in KEYWORDS:
-            if (keyword in job_title.lower().strip()):
-                 return True
-            else:
-                 return False
+    #I'm splitting the title into seperate words so we can search each individually
+    title_array = job_title.lower().strip().split()
+    for word in title_array:
+        for keyword in KEYWORDS:
+                if (keyword in word):
+                    return True
+    # If we reach this section of code, we've checked every word with no hits, so return False
+    return False
 
 
 # METHOD 1: READING HTML DATA
@@ -131,10 +141,37 @@ def scrape_gameloft():
     return db.add_jobs_if_new(job_array)
 
 
+# This time the JSON data can be found INSIDE an element. 
+# We scrape the JSON using Beautiful Soup and then load it into an array with json.loads
+def scrape_riot():
+    riot = get_soup(RIOT['URL'])
+
+    riot_data = riot.find(RIOT['data-element'], RIOT['data-attrs'])['data-props']
+
+    try:
+        riot_json = json.loads(riot_data)
+    except:
+        print(f"Unable to parse JSON from {RIOT['URL']}")
+
+    job_array = []
+
+    for job in riot_json['jobs']:
+        if (is_valid_job(job['title'])):
+            job_array.append(
+                {'title' : job['title'], 
+                 'company' : 'Riot', 
+                 'link' : job['url'], 
+                 'date' : None, 
+                 'location' : job['office']})
+            
+    return db.add_jobs_if_new(job_array)
+
+
 # Fetches all job boards and sends push notification if anything is found
 def refresh_job_board():
     new_job_count = scrape_work_with_indies()
     new_job_count += scrape_gameloft()
+    new_job_count += scrape_riot()
     if new_job_count != 0:
         notify(str(new_job_count) + " NEW JOBS FOUND", duration="short", scenario="reminder")
 
@@ -144,7 +181,6 @@ def main():
 
     refresh_job_board()
     print(db.get_jobs_array())
-
     if (exit_code == 0):
          print('Jobscraper completed successfully.')
     else:
