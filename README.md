@@ -1,4 +1,7 @@
-OVERVIEW
+# Game Job Scraper
+A collection of automatically aggregated programming jobs for game developers
+
+#### Description:
 
 Game Job Scraper is an example of how to create a webscraper using Python, SQL, and Beautiful Soup. 
 
@@ -16,8 +19,6 @@ At times, a website will obfuscate information that makes reading HTML more diff
 
 Whilst this specific repository if focused on the webscraping aspect, I've included a barebones example of how this data can be presented as a website (www.mattmuller.website).
 
-AUTOMATION
-
-Jobscraper.py can be ran as a background process and will send a push notification if it finds any new jobs. In this day and age, being the 'first on the stack' can mean the difference when hiring managers need to view hundreds if not thousands of applications. 
+Jobscraper.py can also be ran as a background process and will send a push notification if it finds any new jobs. In this day and age, being the 'first on the stack' can mean the difference when hiring managers need to view hundreds if not thousands of applications. 
 
 My method for automation is through the task scheduler. I use pyinstaller to convert jobscraper.py to an .exe (making sure I include all dependencies) and then schedule the task to trigger hourly, updating my database each time and sending a push notification if it finds anything.
