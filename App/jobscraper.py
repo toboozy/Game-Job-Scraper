@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 from win11toast import notify
-import database.database_manager as db
+import database_manager as db
 import formatter as f
 import json
 
