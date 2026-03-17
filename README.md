@@ -17,7 +17,7 @@ In this method, the webscraper reads the HTML document and uses Beautiful Soup t
 
 At times, a website will obfuscate information that makes reading HTML more difficult. For example, many websites include pagination that limits the information present in the HTML. To get around this, we can access the fetch request directly and input our own paramaters to recieve the JSON data used to populate the website. 
 
-Whilst this specific repository if focused on the webscraping aspect, I've included a barebones example of how this data can be presented as a website (www.mattmuller.website).
+Whilst this specific repository if focused on the webscraping aspect, I've included a barebones example of how this data can be presented as a website (www.mattmuller.website/jobs).
 
 Jobscraper.py can also be ran as a background process and will send a push notification if it finds any new jobs. In this day and age, being the 'first on the stack' can mean the difference when hiring managers need to view hundreds if not thousands of applications. 
 
