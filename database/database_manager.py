@@ -78,7 +78,7 @@ def add_jobs_if_new(job_array : list):
     return count
 
 
-database = sqlite3.connect("jobs.db")
+database = sqlite3.connect("database/jobs.db")
 sql = database.cursor()
 #Create the database if not found
 #ID, Job Title, Company, Link, Date (yyyy-mm-dd)

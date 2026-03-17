@@ -8,6 +8,16 @@ import json
 #EXIT CODE
 exit_code = 0
 
+
+def set_exit_code(int):
+    global exit_code
+    exit_code = int
+
+
+def get_exit_code():
+    global exit_code
+    return exit_code
+
 #WEBSITE SCRAPING CONFIGS (Consider adding to seperate file)
 
 #Filters jobs when scraping
@@ -174,15 +184,17 @@ def refresh_job_board():
     new_job_count += scrape_gameloft()
     new_job_count += scrape_riot()
     if new_job_count != 0:
-        notify(str(new_job_count) + " NEW JOBS FOUND", duration="short", scenario="reminder")
-
+        try:
+            notify(str(new_job_count) + " NEW JOBS FOUND", duration="short", scenario="reminder")
+        except:
+            print("Unable to push toast notification.")
+            set_exit_code(1)
 
 def main():
-    global exit_code
 
     refresh_job_board()
-    print(db.get_jobs_array())
-    if (exit_code == 0):
+
+    if (get_exit_code() == 0):
          print('Jobscraper completed successfully.')
     else:
          print('Jobscraper completed with some errors.')
