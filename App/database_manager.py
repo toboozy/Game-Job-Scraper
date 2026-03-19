@@ -81,6 +81,6 @@ database = sqlite3.connect("Data/jobs.db")
 sql = database.cursor()
 #Create the database if not found
 #ID, Job Title, Company, Link, Date (yyyy-mm-dd)
-# NOTE: This will create the database in the cwd of the command line. It's important then that this script is run from that 'database' directory for proper organisation 
+# NOTE: It's important that this script is run from that 'app' directory due to the relative path used. 
 # NOTE: Use cron job or build this script as an .exe and use task scheduler or command line to automatically update the database
 sql.execute("CREATE TABLE IF NOT EXISTS jobs(id INTEGER PRIMARY KEY, title TEXT, company TEXT, link TEXT, date TEXT, location TEXT)")
